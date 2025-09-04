@@ -37,46 +37,68 @@
 
 # virtual methods
 .method public run()V
-    .locals 3
+    .locals 6
 
     .line 890
     iget-object v0, p0, Lcom/pripla/cosmo/stflash/STFlashService$10;->this$0:Lcom/pripla/cosmo/stflash/STFlashService;
 
-    invoke-static {v0}, Lcom/pripla/cosmo/stflash/STFlashService;->access$400(Lcom/pripla/cosmo/stflash/STFlashService;)Landroid/app/Notification$Builder;
+    new-instance v1, Landroid/content/Intent;
 
-    move-result-object v0
+    iget-object v2, p0, Lcom/pripla/cosmo/stflash/STFlashService$10;->this$0:Lcom/pripla/cosmo/stflash/STFlashService;
 
-    const/4 v1, 0x0
+    const-class v3, Lcom/pripla/cosmo/stflash/STFlashService;
 
-    invoke-virtual {v0, v1, v1, v1}, Landroid/app/Notification$Builder;->setProgress(IIZ)Landroid/app/Notification$Builder;
-
-    move-result-object v0
-
-    const-string v1, "New version of CODI available, tap to update"
-
-    invoke-virtual {v0, v1}, Landroid/app/Notification$Builder;->setContentText(Ljava/lang/CharSequence;)Landroid/app/Notification$Builder;
+    invoke-direct {v1, v2, v3}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
 
     .line 891
-    iget-object v0, p0, Lcom/pripla/cosmo/stflash/STFlashService$10;->this$0:Lcom/pripla/cosmo/stflash/STFlashService;
+    const-string v2, "3"
 
-    invoke-static {v0}, Lcom/pripla/cosmo/stflash/STFlashService;->access$500(Lcom/pripla/cosmo/stflash/STFlashService;)Landroid/app/NotificationManager;
-
-    move-result-object v0
-
-    iget-object v1, p0, Lcom/pripla/cosmo/stflash/STFlashService$10;->this$0:Lcom/pripla/cosmo/stflash/STFlashService;
-
-    invoke-static {v1}, Lcom/pripla/cosmo/stflash/STFlashService;->access$400(Lcom/pripla/cosmo/stflash/STFlashService;)Landroid/app/Notification$Builder;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Landroid/app/Notification$Builder;->build()Landroid/app/Notification;
-
-    move-result-object v1
-
-    const/16 v2, 0x309
-
-    invoke-virtual {v0, v2, v1}, Landroid/app/NotificationManager;->notify(ILandroid/app/Notification;)V
+    invoke-virtual {v1, v2}, Landroid/content/Intent;->setAction(Ljava/lang/String;)Landroid/content/Intent;
 
     .line 892
+    const-string v2, "parPath"
+
+    const-string v3, "https://fota.planetcom.co.uk/stm32flash/cosmo_stm32_firmware_versions.txt"
+
+    invoke-virtual {v1, v2, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+
+    .line 893
+    const-string v2, "dataPath"
+
+    invoke-virtual {v0}, Lcom/pripla/cosmo/stflash/STFlashService;->getFilesDir()Ljava/io/File;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-virtual {v1, v2, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+
+    .line 894
+    const-string v2, "md5"
+
+    const-string v3, ""
+
+    invoke-virtual {v1, v2, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+
+    .line 895
+    const-string v2, "size"
+
+    const-wide/16 v3, -0x1
+
+    invoke-virtual {v1, v2, v3, v4}, Landroid/content/Intent;->putExtra(Ljava/lang/String;J)Landroid/content/Intent;
+
+    .line 896
+    const-string v2, "state"
+
+    const/16 v5, 0x9
+
+    invoke-virtual {v1, v2, v5}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+
+    .line 897
+    invoke-virtual {v0, v1}, Lcom/pripla/cosmo/stflash/STFlashService;->startForegroundService(Landroid/content/Intent;)Landroid/content/ComponentName;
+
+    .line 898
     return-void
 .end method
