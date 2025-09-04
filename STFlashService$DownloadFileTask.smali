@@ -175,13 +175,28 @@
     const/4 v3, 0x0
 
     :try_start_1
+    aget-object v2, p1, v0
+
+    iget-object v2, v2, Lcom/pripla/cosmo/stflash/STFlashService$FileInfo;->filePath:Ljava/lang/String;
+
+    const-string v4, "http"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+
+    move-result v4
+
+    if-eqz v4, :cond_http_ok
+
+    const-string v0, "Network downloads disabled"
+
+    iput-object v0, v1, Lcom/pripla/cosmo/stflash/STFlashService$DownloadFileTask;->error:Ljava/lang/String;
+
+    return-object v3
+
+    :cond_http_ok
     new-instance v4, Ljava/net/URL;
 
-    aget-object v5, p1, v0
-
-    iget-object v5, v5, Lcom/pripla/cosmo/stflash/STFlashService$FileInfo;->filePath:Ljava/lang/String;
-
-    invoke-direct {v4, v5}, Ljava/net/URL;-><init>(Ljava/lang/String;)V
+    invoke-direct {v4, v2}, Ljava/net/URL;-><init>(Ljava/lang/String;)V
 
     .line 426
     .local v4, "url":Ljava/net/URL;
@@ -196,6 +211,21 @@
     const-string v6, "GET"
 
     invoke-virtual {v5, v6}, Ljava/net/HttpURLConnection;->setRequestMethod(Ljava/lang/String;)V
+
+    .line 427a
+    const/16 v6, 0x2710
+
+    invoke-virtual {v5, v6}, Ljava/net/HttpURLConnection;->setConnectTimeout(I)V
+
+    .line 427b
+    const/16 v6, 0x4e20
+
+    invoke-virtual {v5, v6}, Ljava/net/HttpURLConnection;->setReadTimeout(I)V
+
+    .line 427c
+    const/4 v6, 0x0
+
+    invoke-virtual {v5, v6}, Ljava/net/HttpURLConnection;->setInstanceFollowRedirects(Z)V
 
     .line 428
     invoke-virtual {v5}, Ljava/net/HttpURLConnection;->connect()V
