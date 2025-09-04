@@ -1605,10 +1605,49 @@
 .end method
 
 .method private startForegroundService(Ljava/lang/String;Landroid/content/Intent;)V
-    .locals 0
+    .locals 6
     .param p1, "action"    # Ljava/lang/String;
     .param p2, "intent"    # Landroid/content/Intent;
 
+    const-string v0, "localPath"
+
+    invoke-virtual {p2, v0}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    if-eqz v0, :end_local
+
+    invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
+
+    move-result v1
+
+    if-nez v1, :end_local
+
+    const/16 v1, 0x9
+
+    iput v1, p0, Lcom/pripla/cosmo/stflash/STFlashService;->mState:I
+
+    new-instance v1, Lcom/pripla/cosmo/stflash/STFlashService$FlashAsyncTask;
+
+    const/4 v2, 0x0
+
+    invoke-direct {v1, p0, v2}, Lcom/pripla/cosmo/stflash/STFlashService$FlashAsyncTask;-><init>(Lcom/pripla/cosmo/stflash/STFlashService;Lcom/pripla/cosmo/stflash/STFlashService$1;)V
+
+    iput-object v1, p0, Lcom/pripla/cosmo/stflash/STFlashService;->mFlashAsyncTask:Lcom/pripla/cosmo/stflash/STFlashService$FlashAsyncTask;
+
+    iget-object v1, p0, Lcom/pripla/cosmo/stflash/STFlashService;->mFlashAsyncTask:Lcom/pripla/cosmo/stflash/STFlashService$FlashAsyncTask;
+
+    const/4 v2, 0x1
+
+    new-array v3, v2, [Ljava/lang/String;
+
+    const/4 v4, 0x0
+
+    aput-object v0, v3, v4
+
+    invoke-virtual {v1, v3}, Lcom/pripla/cosmo/stflash/STFlashService$FlashAsyncTask;->execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
+
+    :end_local
     return-void
 .end method
 
