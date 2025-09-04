@@ -3499,7 +3499,7 @@
     iput v3, p0, Lcom/pripla/cosmo/stflash/MainActivity;->mRetry:I
 
     .line 518
-    const/4 v3, 0x7
+    const/4 v3, 0x9
 
     iput v3, p0, Lcom/pripla/cosmo/stflash/MainActivity;->mState:I
 

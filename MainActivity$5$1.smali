@@ -42,29 +42,27 @@
 
     new-instance v0, Landroid/content/Intent;
 
-    iget-object v1, p0, Lcom/pripla/cosmo/stflash/MainActivity$5$1;->this$1:Lcom/pripla/cosmo/stflash/MainActivity$5;
+    const-string v1, "android.intent.action.GET_CONTENT"
 
-    iget-object v1, v1, Lcom/pripla/cosmo/stflash/MainActivity$5;->this$0:Lcom/pripla/cosmo/stflash/MainActivity;
+    invoke-direct {v0, v1}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
 
-    const-class v2, Lcom/pripla/cosmo/stflash/STFlashService;
+    const-string v1, "*/*"
 
-    invoke-direct {v0, v1, v2}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
+    invoke-virtual {v0, v1}, Landroid/content/Intent;->setType(Ljava/lang/String;)Landroid/content/Intent;
 
-    const-string v1, "1"
+    const-string v1, "Choose file to flash"
 
-    invoke-virtual {v0, v1}, Landroid/content/Intent;->setAction(Ljava/lang/String;)Landroid/content/Intent;
+    invoke-static {v0, v1}, Landroid/content/Intent;->createChooser(Landroid/content/Intent;Ljava/lang/CharSequence;)Landroid/content/Intent;
 
-    const-string v1, "localPath"
+    move-result-object v1
 
-    const-string v2, "/sdcard/Download/codi_update.bin"
+    iget-object v2, p0, Lcom/pripla/cosmo/stflash/MainActivity$5$1;->this$1:Lcom/pripla/cosmo/stflash/MainActivity$5;
 
-    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+    iget-object v2, v2, Lcom/pripla/cosmo/stflash/MainActivity$5;->this$0:Lcom/pripla/cosmo/stflash/MainActivity;
 
-    iget-object v1, p0, Lcom/pripla/cosmo/stflash/MainActivity$5$1;->this$1:Lcom/pripla/cosmo/stflash/MainActivity$5;
+    const/16 v3, 0x29a
 
-    iget-object v1, v1, Lcom/pripla/cosmo/stflash/MainActivity$5;->this$0:Lcom/pripla/cosmo/stflash/MainActivity;
-
-    invoke-virtual {v1, v0}, Lcom/pripla/cosmo/stflash/MainActivity;->startForegroundService(Landroid/content/Intent;)Landroid/content/ComponentName;
+    invoke-virtual {v2, v1, v3}, Lcom/pripla/cosmo/stflash/MainActivity;->startActivityForResult(Landroid/content/Intent;I)V
 
     return-void
 .end method
