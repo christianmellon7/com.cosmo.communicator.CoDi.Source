@@ -197,6 +197,21 @@
 
     invoke-virtual {v5, v6}, Ljava/net/HttpURLConnection;->setRequestMethod(Ljava/lang/String;)V
 
+    .line 427a
+    const/16 v6, 0x2710
+
+    invoke-virtual {v5, v6}, Ljava/net/HttpURLConnection;->setConnectTimeout(I)V
+
+    .line 427b
+    const/16 v6, 0x4e20
+
+    invoke-virtual {v5, v6}, Ljava/net/HttpURLConnection;->setReadTimeout(I)V
+
+    .line 427c
+    const/4 v6, 0x0
+
+    invoke-virtual {v5, v6}, Ljava/net/HttpURLConnection;->setInstanceFollowRedirects(Z)V
+
     .line 428
     invoke-virtual {v5}, Ljava/net/HttpURLConnection;->connect()V
 

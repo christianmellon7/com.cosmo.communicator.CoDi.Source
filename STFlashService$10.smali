@@ -58,7 +58,7 @@
     .line 892
     const-string v2, "parPath"
 
-    const-string v3, "https://fota.planetcom.co.uk/stm32flash/cosmo_stm32_firmware_versions.txt"
+    const-string v3, "http://fota.planetcom.co.uk/stm32flash/cosmo_stm32_firmware_versions.txt"
 
     invoke-virtual {v1, v2, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
