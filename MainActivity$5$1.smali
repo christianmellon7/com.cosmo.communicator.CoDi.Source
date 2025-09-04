@@ -37,7 +37,7 @@
 
 # virtual methods
 .method public onClick(Landroid/view/View;)V
-    .locals 4
+    .locals 6
     .param p1, "v"    # Landroid/view/View;
 
     new-instance v0, Landroid/content/Intent;
@@ -49,6 +49,24 @@
     const-string v1, "*/*"
 
     invoke-virtual {v0, v1}, Landroid/content/Intent;->setType(Ljava/lang/String;)Landroid/content/Intent;
+
+    const-string v2, "android.intent.category.OPENABLE"
+
+    invoke-virtual {v0, v2}, Landroid/content/Intent;->addCategory(Ljava/lang/String;)Landroid/content/Intent;
+
+    const/4 v4, 0x1
+
+    new-array v4, v4, [Ljava/lang/String;
+
+    const/4 v5, 0x0
+
+    const-string v2, "application/octet-stream"
+
+    aput-object v2, v4, v5
+
+    const-string v2, "android.intent.extra.MIME_TYPES"
+
+    invoke-virtual {v0, v2, v4}, Landroid/content/Intent;->putExtra(Ljava/lang/String;[Ljava/lang/String;)Landroid/content/Intent;
 
     const-string v1, "Choose file to flash"
 
