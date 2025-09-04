@@ -930,7 +930,7 @@
     .line 1266
     iget-object v0, p0, Lcom/pripla/cosmo/stflash/MainActivity;->btnAction:Landroid/widget/Button;
 
-    const-string v1, "CHECK FOR UPDATES"
+    const-string v1, "UPDATES DISABLED"
 
     invoke-virtual {v0, v1}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
 
@@ -3712,7 +3712,7 @@
     .line 541
     iget-object v3, p0, Lcom/pripla/cosmo/stflash/MainActivity;->btnAction:Landroid/widget/Button;
 
-    const-string v4, "CHECK FOR UPDATES"
+    const-string v4, "UPDATES DISABLED"
 
     invoke-virtual {v3, v4}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
 
